@@ -1,0 +1,53 @@
+
+{% extends 'market/base.html '%}
+{% load static %}
+
+{% block title%}
+	Market's Product Listing
+{% endblock %}
+
+{% block content %}
+<div id = "sidebar">
+	<h2>Categories</h2>
+	<ul>
+		<li {% if not category %}class="selected"{% endif %}>
+			<a href="{% url "market:product_list" %}">All</a>
+		</li>
+		{% for cat in categories %}
+			<li {% if category.slug == cat.slug %}class="selected"{% endif %}>
+				<a href="{{cat.get_absolute_url}}">{{cat.name}}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+<br>
+
+
+<div id="main" class="product-list">
+	<h1> {% if category %}{{category.name}}{% else %}Products{% endif %}</h1>
+
+	{% for product in products %}
+	<div class="item">
+		<a href="{{product.get_absolute_url}}">
+			<img src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/no_image.png" %}{% endif%}">
+		</a>
+		<br>
+		<a href="{{product.get_absolute_url}}">{{product.name}}:</a><br>		
+		{{product.description}} <br>
+		{{product.seller}} <br>
+		₱{{product.price}} <br>
+		{{product.reviews}} <br>
+		
+		<br>
+		<br>
+	</div>	
+	{% endfor %}
+
+<br>
+<div>
+	<!--Paginator Area -->
+	{% include "market/pagination.html" with page=products %}
+</div>
+
+</div>
+
+{% endblock %}
