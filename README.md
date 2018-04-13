@@ -1,6 +1,6 @@
 # merkado_beta
 
-a online market for agricultural commodity.  
+a online market for agricultural commodity. The website of the merkado_beta can be accessed here: [http://tranquil-eyrie-17154.herokuapp.com/](http://tranquil-eyrie-17154.herokuapp.com/).  
 
 Still under construction, various important features are still not working. 
  - need to code optimize the product display
